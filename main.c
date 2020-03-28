@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 //Declaring the components of a process using a structure type of data
 //pid is process id
@@ -212,6 +213,7 @@ int main(){
             default:
                 printf("done");
         }
+        sleep(10);
 
     }
     printf("\n\n");
