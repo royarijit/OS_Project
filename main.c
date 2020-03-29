@@ -118,7 +118,7 @@ void show_queue(struct process *q,int l){
     printf("\n\n");
 }
 
-
+//This algorithm executes the processes in the round robin manner
 void round_robin_process(struct process *q,int l){
     int t=0;
     int i=0;
@@ -150,18 +150,20 @@ void round_robin_process(struct process *q,int l){
 
         q[i] = p;
     }
-//    printf("\nAverage Waiting Time= %f\n",wait/n);
-//    printf("Avg Turnaround Time = %f\n",tat/n);
+    printf("\nAverage Waiting Time= %f\n",wait/n);
+    printf("Avg Turnaround Time = %f\n",tat/n);
 }
+
+//This function initiates and calls the round robin algorithm and passes the process queue and the length of the queue to the algorithm as an argument
 void round_robin(){
     printf("\n\t\tRound Robin\n");
     waiting_time(q3,qn3);
     turnaround_time(q3,qn3);
-    round_robin_process(q3,qn3);
+    round_robin_process(q3,qn3);// calling the round robin algorithm
     show_queue(q3,qn3);
 }
 
-
+//This function performs the priority scheduling to the queue that is passed in here
 void priority_scheduling_process(struct process *q,int l){
     for(int i=0;i<l;i++){
         for(int j=0;j<l;j++){
@@ -173,13 +175,15 @@ void priority_scheduling_process(struct process *q,int l){
         }
     }
 }
+
+//This function calls for the priority scheduling algorithm and shows the process queue after performing the algorithm
 void priority_scheduling(){
     printf("\n\t\tPriority Scheduling\n");
     priority_scheduling_process(q2,qn2);
     show_queue(q2,qn2);
 }
 
-
+//this function performs first come first serve algorithm
 void fcfs_process(struct process *q,int l){
     for(int i=0;i<l;i++){
         for(int j=0;j<l;j++){
@@ -191,30 +195,30 @@ void fcfs_process(struct process *q,int l){
         }
     }
 }
+
+//This function calls for the fcfs algorithm
 void fcfs(){
     printf("\n\t\tFirst Come First Serve\n");
     fcfs_process(q1,qn1);
     show_queue(q1,qn1);
 }
+
+//Main driver code
 int main(){
     input_data();
     int i=1;
+
+    //Executing the queues on priority basis
     for(i=1;i<=3;i++){
-        switch(i){
-            case 3:
-                round_robin();
-                break;
-            case 2:
-                priority_scheduling();
-                break;
-            case 1:
-                fcfs();
-                break;
-            default:
-                printf("done");
+        if (i==1) {
+            round_robin();
+        }
+        else if (i==2) {
+            priority_scheduling();
+        }
+        else if (i==3){
+            fcfs();
         }
         sleep(10);
-
     }
-    printf("\n\n");
 }
